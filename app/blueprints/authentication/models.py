@@ -51,7 +51,7 @@ class User(UserMixin, db.Model):
 
 
     def revoke_token(self):
-        self.token_exp = dt.utcnow()- timedelta(second = 1)
+        self.token_exp = dt.utcnow()- timedelta(seconds = 1)
     
     @staticmethod
     def check_token(token):

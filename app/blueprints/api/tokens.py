@@ -12,7 +12,8 @@ def get_token():
 
 
 @api.route('/tokens', methods=['DELETE'])
+@basic_auth.login_required
 def revoke_token():
     g.current_user.revoke_token()
     db.session.commit()
-    return 'Success', 204
+    return jsonify({'message':'Success'}), 204
