@@ -1,0 +1,27 @@
+1. shop blueprint
+2. activate shop blueprint
+3. create Product model
+    - Attributes
+        - id
+        - name
+        - price
+        - category (Foreign Key)
+            - shoes
+            - pants
+            - shirts
+            - jackets
+        - tax
+        - description
+        - created_on
+    - Methods
+        - __repr__()
+        - from_dict()
+4. create Category model
+    - Attributes
+        - id
+        - name
+    - Methods
+        - __repr__()
+        - from_dict()
+5. Run a migration for your database
+6. Apply changes to the database

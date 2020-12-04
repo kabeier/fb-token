@@ -1,0 +1,53 @@
+{% set active_page =  active_page|default('main.index') -%}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>
+        {% block title %}Fakebook - {% endblock %}
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block styles %}
+      {% include 'includes/styles.html' %}
+    {% endblock styles %}
+  </head>
+  <body>
+
+    <header>
+        {% include './includes/navigation.html' %}
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for c, m in messages %}
+          <div class="alert alert-{{ c }} alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{ m }}</strong> 
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <main class="container">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer class="text-light">
+      {% include 'includes/footer.html' %}
+    </footer>
+    
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {% block scripts %}
+      {% include 'includes/scripts.html' %}
+    {% endblock scripts %}
+    
+  </body>
+</html>

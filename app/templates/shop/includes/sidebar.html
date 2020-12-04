@@ -1,0 +1,12 @@
+<div class="col-12 col-sm-3">
+    <div class="card bg-light mb-3">
+        <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+        <ul class="list-group category_block">
+            {% for c in product_categories %}
+            <a href="{{ url_for('shop.category', id=c.id) }}">
+                <li class="text-dark bg-light list-group-item">{{ c.name }}</li>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

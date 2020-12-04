@@ -1,0 +1,102 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ super() }}Shop
+{% endblock title %}
+
+{% set active_page = 'shop.index' %}
+    
+{% block content %}
+<h1>Shop Page</h1>
+<hr>
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">E-COMMERCE CATEGORY</h1>
+        <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte...</p>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('shop.index') }}">Home</a></li>
+                    {%  if category %}
+                    <li class="breadcrumb-item">{{ category.name }}</li>
+                    {% endif %}
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% include 'shop/includes/sidebar.html' %}
+        <div class="col">
+            <div class="row">
+                {% for p in products %}
+                <div class="col-md-6">
+                    <div class="card-deck">
+                        <div class="card">
+                            <div style="padding: 15px;">
+                                <div>
+                                    <h6 class="card-title">
+                                        <strong>{{ p.name }}</strong>
+                                        <span class="float-right">{{ '${:,.2f}'.format(p.price) }}</span>
+                                    </h6>
+                                </div>
+                                
+                                <a href="{{ url_for('shop.single', id=p.id) }}">
+                                    <img class="card-img-top img-fluid" src="{{ p.image }}" alt="{{ p.name }}">
+                                </a>
+                                <div class="card-body">
+                                    <p class="card-text">{{ p.description|truncate(100) }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-success btn-block" href="{{ url_for('shop.add_to_cart', id=p.id) }}">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-12 col-md-6 col-lg-4 product">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="{{ p.image }}" alt="{{ p.name }}">
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="{{ url_for('shop.single', id=p.id) }}" title="View Product">{{ p.name }}</a></h4>
+                            <p class="card-text">{{ p.description|truncate(100) }}</p>
+                            <div class="row">
+                                <p class="btn btn-danger btn-block">{{ '${:,.2f}'.format(p.price) }}</p>
+                            </div>
+                            <div class="row">
+                                <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                {% endfor %}
+                <div class="col-12">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

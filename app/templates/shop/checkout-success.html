@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ super() }}Checkout Sucess
+{% endblock title %}
+
+{% set active_page = 'shop.show_cart' %}
+    
+{% block content %}
+<h1>Checkout Success Page</h1>
+<hr>
+<p>Congrats! Your payment was successful!</p>
+{% endblock content %}
